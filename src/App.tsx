@@ -7,6 +7,7 @@ import InitialPageComponent from "./components/InitialPage";
 import RegisterComponent from "./pages/Register";
 import CentralComponent from "./pages/CentralApp";
 import FooterComponent from "./components/Layout/Footer";
+import CalendarioDatas from "./pages/CalendarioDatas";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<HomeComponent />} />
           <Route path="/register" element={<RegisterComponent />} />
           <Route path="/central" element={<CentralComponent />} />
+          <Route path="/calendario" element={<CalendarioDatas />} />
         </Routes>
         <FooterComponent />
       </BrowserRouter>

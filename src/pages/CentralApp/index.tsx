@@ -1,151 +1,155 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import { 
+    BodyContainer, 
+    CarouselContent, 
+    ImageContent, 
+    ButtonContent, 
+    Button, 
+    CardsContainer,
+    Image
+     } from "./styles";
+import { Link } from "react-router-dom";
 
-const BodyContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90vw;
-    margin: 0 auto;
-    margin-top: 60px;
-
-    h2 {
-        margin-bottom: 40px; 
-    }
-
-    > div {
-        h3 {
-            margin-top: 80px;
-            margin-bottom: 40px;
-        } 
-    }
-`;
-
-const CardsContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 86vw;
-    margin: 0 auto;
-    margin-top: 30px;
-    padding: 10px;
-    border: 1px solid #000;
-
-    & .card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        border: 1px solid #000;
-        border-radius: 6px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        cursor: pointer;
-        > img {
-            width: 80px;
-         }
-    }
-
-    h5 {
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-
-    p {
-        font-size: 12px;
-    }
-`;
-
-const CarouselContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-    overflow: hidden;
-    position: relative;
-`;
-
-const ImageContent = styled.div<{ index: number }>`
-    display: flex;
-    width: 100vw;
-    transform: ${(props) => `translateX(-${props.index * 100}%)`};
-    transition: transform 0.5s ease-in-out;
-`;
-
-const Image = styled.img`
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-`;
-
-const ButtonContent = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin-top: 20px;
-`;
-
-const Button = styled.button`
-    padding: 4px 8px;
-    background-color: green;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    &:hover {
-        background-color: #0056b3;
-    }
-`;
-type Card = {
-    titulo: string;
-    descricao?: string;
-    imagem: string;
-}
 const Cards =   [
     {
+        id: 1,
         titulo: "PLASTICOS",
-        descricao: `Plasticos de todos os tipo: 
-        Garrafas PET,  
-        plástico bolha, 
-        plástico de brinquedos, 
-        Etc.`,
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
         imagem: "./assets/pet.webp",
+        alt: "Pet"
     },
     {
+        id: 2,
         titulo: "FERRO",
-        descricao: `Ferro de diversas qualidades:
-        Ferro 1,
-        Ferro 2,
-        Ferro 3,
-        Ferro 4 .`,
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
         imagem: "./assets/ferro.jpeg",
+        alt: "Ferro"
     },
     {
+        id: 3,
         titulo: "COBRE",
-        descricao: `Cobre de todos os tipos:
-        cabos,
-        aparelhos quebrados
-        obejtos de uso geral.`,
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
         imagem: "./assets/cobre.jpeg",
+        alt: "Cobre"
     },
     {
+        id: 4,
         titulo: "PAPELÃO",        
-        descricao: `Papelão de todos os tipos:
-        Jornal, caderno,
-        caixas,
-        etc.`,
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
         imagem: "./assets/papela.jpg",
+        alt: "Papelão"
+    },
+    {
+        id: 5,
+        titulo: "METAL",
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
+        imagem: "./assets/metal.jpeg",
+        alt: "Metal"
+    },
+    {
+        id: 6,
+        titulo: "VIDRO",
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
+        imagem: "./assets/vidro.jpeg",
+        alt: "Vidro"
+    },
+    {
+        id: 7,
+        titulo: "RESIDUOS PERIGOSOS",
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
+        imagem: "./assets/perigoso.png",
+        alt: "Residuos Perigosos"
+    },
+    {
+        id: 8,
+        titulo: "MATERIAIS HOSPITALARES",
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
+        imagem: "./assets/hospital.jpeg",
+        alt: "Materiais Hospitalares"
+    },
+    {
+        id: 9,
+        titulo: "MATERIAIS RADIOATIVOS",
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
+        imagem: "./assets/radio.jpeg",
+        alt: "Materiais Radioativos"
+    },
+    {
+        id: 10,
+        titulo: "MATERIAIS",
+        descricao: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        culpa qui officia deserunt mollit anim id est laborum.`,
+        imagem: "./assets/1.jpeg",
+        alt: "Materiais"
     }
 ]
-const CentralComponent = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const images = [
-        "./assets/foto1.png",
-        "./assets/foto1.png",
-        "./assets/foto1.png",
-        "./assets/foto1.png",
-    ];
 
+
+const CentralComponent = ()  => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
+
+    const handleOpenModal = (id: any) => {
+        setSelectedCard(id);
+        setModalOpen(!modalOpen)
+    }  
+    const images = [
+        "./assets/1.jpeg",
+        "./assets/2.jpeg",
+        "./assets/3.jpeg",
+        "./assets/4.jpeg",
+    ];
+// button functions slider carousel
     const handleNext = () => {
         setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
     };
@@ -154,11 +158,11 @@ const CentralComponent = () => {
         setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
     };
 
-    // Efeito para iniciar o carrossel automaticamente
+    // init carousel
     useEffect(() => {
         const interval = setInterval(() => {
             handleNext();
-        }, 3000); // Muda de imagem a cada 3 segundos
+        }, 4000); //set time to change images
         return () => clearInterval(interval);
     }, []);
 
@@ -168,13 +172,14 @@ const CentralComponent = () => {
 
             <CarouselContent>
                 <ImageContent index={currentIndex}>
-                    {images.map((src, index) => (
-                        <Image key={index} src={src} alt={`Slide ${index + 1}`} />
+                    {images.map((image, idx) => (
+                        <Image key={idx} src={image} alt={`Slide ${idx + 1}`} />
                     ))}
+                      
                 </ImageContent>
                 <ButtonContent>
-                    <Button onClick={handlePrev}>Anterior</Button>
-                    <Button onClick={handleNext}>Próximo</Button>
+                    <Button onClick={handlePrev}><img src="./assets/left.png" alt="" /></Button>
+                    <Button onClick={handleNext}><img src="./assets/right.png" alt="" /></Button>
                 </ButtonContent>
             </CarouselContent>
             <div>
@@ -182,11 +187,28 @@ const CentralComponent = () => {
             </div>
             <CardsContainer className="cards-container">
                 {Cards.map((card) => (
-                    <div className="card">
+                    <div key={card.id}  onClick={() => handleOpenModal(card.id)} className="card">
                         <h5>{card.titulo}</h5>
-                        <img src={card.imagem} alt={card.titulo} />
+                        <img src={card.imagem} alt={card.alt} />
                     </div>
                 ))}
+                {modalOpen && selectedCard !== null && (
+                    <section className="modal">
+                        <div className="close-modal">
+                            <img src="./assets/close.png" alt={selectedCard} onClick={handleOpenModal} />
+                        </div>
+                        {Cards.filter((card) => card.id === selectedCard).map(card => (
+                            <div id="modal">
+                                <h4>{card.titulo}</h4>
+                                <div>
+                                    <img src={card.imagem} alt={card.alt} />
+                                    <p>{card.descricao}</p>
+                                </div>   
+                            </div>     
+                        ))}
+                </section>
+                )}
+                  <p className="date"><Link to="/calendario">Ver datas disponiveis</Link></p>
             </CardsContainer>
         </BodyContainer>
     );

@@ -5,9 +5,9 @@ const FooterContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
-    height: 30vh;
+    height: 20vh;
     background-color: #f9f9f9;
     border-top: 1px solid #e9e9e9;
 
@@ -25,17 +25,11 @@ const FooterContainer = styled.div`
             }
         } 
     }
-
-    > img {
-        height: 20vh;
-        margin-top: 10px;
-    }
 `
 
 const FooterComponent = () => {
     return (
         <FooterContainer>
-            <img src="./assets/Recycle.me.png" alt="Recycle.me" />
             <div>
                 <p>&copy; Todos os direitos reservados - 2024 Recycle.me</p>
                 <p>Desenvolvido  por <a href="http://www.linkedin.com/in/guimafaldo">Guilherme</a></p>
